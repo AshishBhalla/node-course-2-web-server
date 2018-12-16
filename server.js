@@ -3,6 +3,10 @@ const express = require('express');
 const hbs = require('hbs');
 
 const fs = require('fs')
+//get environment variable port for heroku to dynamically assign a port
+//process.env is variable which store all the environment variables in KVP
+//if port doesn't exist then set it to 3000(to use it locally)
+const port = process.env.PORT || 3000;
 var app = express();
 //registering the partials. Means from below directory app will look for partials
 hbs.registerPartials(__dirname + '/views/partials')
@@ -103,6 +107,9 @@ app.get('/bad', (req, res) => {
 })
 //port to listen app
 //it takes 2 args 1. port number 2. A method which can be used for anything once server is up
-app.listen(3000,() =>{
-    console.log("Server is up on port 3000");
+app.listen(port,() =>{
+    console.log(`Server is up on port ${port}`);
 });
+
+// start script in package.json will be used by heroku to start the app, which in turns will run server.js
+
