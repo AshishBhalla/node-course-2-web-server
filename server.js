@@ -95,8 +95,13 @@ app.get('/about',(req,res) =>{
         //removing currentYea and using helper instead
         // currentYear: new Date().getFullYear(),
     })
-})
+});
 
+app.get('/project', (req,res) =>{
+    res.render('project.hbs',{
+        pageTitle: 'Projects'
+    })
+})
 
 
 app.get('/bad', (req, res) => {
